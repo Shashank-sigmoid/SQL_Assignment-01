@@ -35,7 +35,7 @@ from airbnb_calendar;
 /*=====================================Q2======================================*/ 
 With airbnbCTE as
 (
-	select *, row_number() over(partition by listing_id order by listing_id) as RowNumber
+	select *, row_number() over(partition by listing_id, curr_date, available order by listing_id) as RowNumber
     from airbnb_calendar
 )
 delete from airbnbCTE where RowNumber > 1;
